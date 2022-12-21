@@ -34,10 +34,10 @@ public class BlackjackTests {
     @Test
     void testCalcPoints() throws Exception {
 
-        assertAll("Calculates appropriate hand totals", () -> assertEquals(0, Blackjack.calcPoints(hand1)),
-                () -> assertEquals(21, Blackjack.calcPoints(hand2)),
-                () -> assertEquals(19, Blackjack.calcPoints(hand3)),
-                () -> assertEquals(33, Blackjack.calcPoints(hand4)));
+        assertAll("Calculates appropriate hand totals", () -> assertEquals(0, Blackjack.points(hand1)),
+                () -> assertEquals(21, Blackjack.points(hand2)),
+                () -> assertEquals(19, Blackjack.points(hand3)),
+                () -> assertEquals(33, Blackjack.points(hand4)));
 
         assertAll("CalcPoints does not alter parameters", 
                 () -> assertEquals(Arrays.toString(hand1Copy), Arrays.toString(hand1)),
@@ -80,10 +80,10 @@ public class BlackjackTests {
     void testDealerKeepHitting() throws Exception {
 
         assertAll("Correctly determines if a dealer should keep hitting",
-                () -> assertTrue(Blackjack.shouldDealerKeepHitting(hand1)),
-                () -> assertFalse(Blackjack.shouldDealerKeepHitting(hand2)),
-                () -> assertFalse(Blackjack.shouldDealerKeepHitting(hand4)),
-                () -> assertTrue(Blackjack.shouldDealerKeepHitting(hand6)));
+                () -> assertTrue(Blackjack.doesDealerKeepHitting(hand1)),
+                () -> assertFalse(Blackjack.doesDealerKeepHitting(hand2)),
+                () -> assertFalse(Blackjack.doesDealerKeepHitting(hand4)),
+                () -> assertTrue(Blackjack.doesDealerKeepHitting(hand6)));
 
         assertAll("dealerKeepHitting does not alter parameters", 
                 () -> assertEquals(Arrays.toString(hand1Copy), Arrays.toString(hand1)),
@@ -96,14 +96,14 @@ public class BlackjackTests {
     void testDetermineResult() throws Exception {
 
         assertAll("Correctly determines the comparison of two hands",
-                () -> assertEquals("User Loses", Blackjack.determineResult(hand4, hand2)),
-                () -> assertEquals("User Loses", Blackjack.determineResult(hand1, hand2)),
-                () -> assertEquals("User Loses", Blackjack.determineResult(hand6, hand7)),
-                () -> assertEquals("User Wins", Blackjack.determineResult(hand2, hand4)),
-                () -> assertEquals("User Wins", Blackjack.determineResult(hand2, hand7)),
-                () -> assertEquals("User Wins", Blackjack.determineResult(hand7, hand6)),
-                () -> assertEquals("User Pushes", Blackjack.determineResult(hand2, hand2)),
-                () -> assertEquals("User Pushes", Blackjack.determineResult(hand7, hand7)));
+                () -> assertEquals("User Loses", Blackjack.Result(hand4, hand2)),
+                () -> assertEquals("User Loses", Blackjack.Result(hand1, hand2)),
+                () -> assertEquals("User Loses", Blackjack.Result(hand6, hand7)),
+                () -> assertEquals("User Wins", Blackjack.Result(hand2, hand4)),
+                () -> assertEquals("User Wins", Blackjack.Result(hand2, hand7)),
+                () -> assertEquals("User Wins", Blackjack.Result(hand7, hand6)),
+                () -> assertEquals("User Pushes", Blackjack.Result(hand2, hand2)),
+                () -> assertEquals("User Pushes", Blackjack.Result(hand7, hand7)));
 
         assertAll("dealerKeepHitting does not alter parameters", 
                 () -> assertEquals(Arrays.toString(hand1Copy), Arrays.toString(hand1)),

@@ -8,6 +8,7 @@ package u3pp;
  * Do not make any changes to this class for this assignment.
  */
 public class Card {
+    public static int length;
     //Instance variables
 	private String suit;
 	private String value;
